@@ -1,0 +1,24 @@
+# This is my first WorkFlow With GithubActions
+
+
+name: CI GITHUB ACTIONS
+
+#Controls when the workflow will run
+on:
+  push:
+    branches:
+    - "main"
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      # Runs a single command using the runners shell
+      - name: Say Hello Worlf
+        run: echo Hello, World!
+      - name: Set Commands in multiple lines
+        run: |
+          echo Add other actions to build
+          echo test, and deploy proyect
+
