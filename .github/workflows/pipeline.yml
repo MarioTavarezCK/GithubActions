@@ -1,24 +1,36 @@
 # This is my first WorkFlow With GithubActions
 
 
-name: CI GITHUB ACTIONS
+name: Deployment Pipeline
 
 #Controls when the workflow will run
 on:
   push:
-    branches:
-    - "main"
+    branches: [main]
 jobs:
-  build:
+  Say-Hello:
+      runs-on: ubuntu-18.04
+      steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        - uses: actions/checkout@v3
+        # Runs a single command using the runners shell
+        - name: 👋 Say Hello World
+          run: echo Hello, World!
+        - name: 🖥️ Set Commands in multiple lines
+          run: |
+            echo Add other actions to build
+            echo test, and deploy proyect
+  lint:
     runs-on: ubuntu-18.04
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      # Runs a single command using the runners shell
-      - name: Say Hello Worlf
-        run: echo Hello, World!
-      - name: Set Commands in multiple lines
-        run: |
-          echo Add other actions to build
-          echo test, and deploy proyect
-
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '14'
+      - name: 🚩Install dependencies
+        run: nmp ci
+      - name: 🤘Lint
+        run: npm run lint
