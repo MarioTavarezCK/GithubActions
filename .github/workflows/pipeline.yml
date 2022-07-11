@@ -31,6 +31,6 @@ jobs:
           cache: 'npm'
           node-version: '14'
       - name: 🚩Install dependencies
-        run: nmp ci
+        run: npm ci
       - name: 🤘Lint
         run: npm run lint
